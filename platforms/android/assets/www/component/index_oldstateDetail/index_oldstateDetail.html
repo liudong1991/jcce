@@ -1,0 +1,34 @@
+<ion-view hide-tabs='true' id='index_oldstateDetail'>
+	<gl-header title="{{title}}"></gl-header>
+	<div class="p20">
+		<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="showTimeClick()">{{{false:'显示详情',true:'关闭详情'}[showTime]}}</button>
+	</div>
+	<section class="scrolltop258 bj">
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div style="width: 15%;">序号</div>
+		    	<div class="df1">号码</div>
+		    	<div class="df1">金额</div>
+		    	<div class="df1">赔率</div>
+		    	<div style="width: 25%;" ng-if="id == 1">彩金</div>
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body" ng-repeat="item in list track by $index">
+			    	<div class="df">
+			        	<div c style="width: 15%;">{{list.length - $index}}</div>
+			        	<div class="df1">{{item.no}}</div>
+			        	<div class="df1">{{item.cash/1000}}</div>
+			        	<div class="df1">{{item.winRate}}</div>
+			        	<div style="width: 25%;" ng-if="id == 1">{{item.handsel/1000}}</div>
+			        </div>
+			        <div class="lh80" ng-if="showTime">
+			        	{{item.createTime}} <span style="margin-right: 0.2rem;"></span> 回水:{{item.rebate/1000}}
+			        </div>
+			    </div>
+			    
+			     <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

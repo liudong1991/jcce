@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="10000000" id="com.qijianke.jcce" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="CommonPL">
+        <param name="android-package" value="com.glsh.CommonPL.CommonPL" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>福</name>
+    <description>
+    An Ionic Framework and Cordova project.
+  </description>
+    <author email="you@example.com" href="http://example.com/">
+    Your Name Here
+  </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
+</widget>

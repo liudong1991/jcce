@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+  <color name="white">#ffffff</color>
+  <color name="green">#e581ff02</color>
+  <!--二维码扫面-->
+  <color name="result_view">#b0000000</color>
+  <color name="viewfinder_mask">#60000000</color>
+  <color name="possible_result_points">#c0ffff00</color>
+  <!--城市选择-->
+  <color name="default_app_bg">#fff4f4f4</color>
+  <color name="color_black_333333">#333333</color>
+  <color name="light_orange">#ffff8103</color>
+  <color name="dddddd">#dddddd</color>
+  <color name="gray_0">#aaaaaa</color>
+  <color name="gray_6">#ffcccccc</color>
+  <color name="gray_17">#ffd4d4d4</color>
+  <color name="light_back">#ff666666</color>
+  <color name="gray_11">#ffbababa</color>
+  <color name="gray">#ff999999</color>
+  <color name="dark_black">#ff222222</color>
+  <color name="list_divider_color">#ffF4F4F4</color>
+
+  <color name="light_gray">#ffeeeeee</color>
+  <color name="transparent">#00000000</color>
+
+
+</resources>

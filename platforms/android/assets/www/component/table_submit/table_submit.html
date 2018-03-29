@@ -1,0 +1,57 @@
+<ion-view hide-tabs='true' id='table_submit'>
+	<gl-header title="{{myDate.number}}期"></gl-header>
+	<section class="scrolltop128 bj">
+		
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div class="df1">序号</div>
+		    	<div class="df1">号码</div>
+		    	<div class="df1">赔率</div>
+		    	<div class="df1">可下注</div>
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body">
+			    	<div class="df" ng-repeat="item in myDate.list">
+			        	<div class="df1">{{$index}}</div>
+			        	<div class="df1">{{item.no}}</div>
+			        	<div class="df1">{{item.odds/1000}}</div>
+			        	<div class="df1">{{item.cash/1000}}</div>
+			       </div>
+			    </div>
+		    </ion-content>
+		</div>
+		
+	</section>
+	<div class="keyword">
+		<div class="input">
+			<div class="df top">
+				<div class="df1 colorff tc">每注金额(元)</div>
+				<div class="df1">
+					<div class="bg">{{user.money}}<span ng-show="bgfoucs"></span></div>
+				</div>
+			</div>
+			<div class="cjc_click">
+				<div class="w25 fl" ng-click="numClick(1)">1</div>
+				<div class="w25 fl" ng-click="numClick(2)">2</div>
+				<div class="w25 fl" ng-click="numClick(3)">3</div>
+				<div class="w25 fl" ng-click="numClick(4)">4</div>
+				<div class="w25 fl" ng-click="numClick(5)">5</div>
+				<div class="w25 fl" ng-click="numClick(6)">6</div>
+				<div class="w25 fl" ng-click="numClick(7)">7</div>
+				<div class="w25 fl" ng-click="numClick(8)">8</div>
+				<div class="w25 fl" ng-click="numClick(9)">9</div>
+				<div class="w25 fl" ng-click="numClick(0)">0</div>
+				<div class="w25 fl" ng-click="numClick('.')">.</div>
+				<div class="w25 fl" ng-click="numClick('<')"><</div>
+			</div>
+		</div>
+		<div class="p10 df">
+			<div class="df1">
+				<button style="width: 90%;margin-left: 5%" class="button button-energized" ng-click="goback()">返回</button>
+			</div>
+			<div class="df1">
+				<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="submitClick()">确定</button>
+			</div>
+		</div>
+	</div>
+</ion-view>

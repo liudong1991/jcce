@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@drawable/update_progress_bg"
+  android:gravity="center_horizontal"
+  android:orientation="vertical"
+  android:paddingBottom="30dp"
+  android:paddingLeft="20dp"
+  android:paddingRight="20dp"
+  android:paddingTop="30dp">
+
+  <TextView
+    android:id="@+id/progress_rate"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:background="@drawable/update_rate_bg"
+    android:gravity="center"
+    android:padding="10dp"
+    android:text="0%"
+    android:textColor="#ffffff"
+    android:textSize="36sp" />
+
+  <ProgressBar
+    android:id="@+id/progress"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="5dp"
+    android:layout_marginBottom="30dp"
+    android:layout_marginTop="30dp"
+    android:progressDrawable="@drawable/update_progress_style" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="5dp"
+      android:text="下载进度"
+      android:textColor="#666666"
+      android:textSize="12sp" />
+
+    <TextView
+      android:id="@+id/curTxt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="0M"
+      android:textColor="#2658a6"
+      android:textSize="12sp" />
+
+    <TextView
+      android:id="@+id/totalTxt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="/0M"
+      android:textColor="#333333"
+      android:textSize="12sp" />
+
+  </LinearLayout>
+
+</LinearLayout>

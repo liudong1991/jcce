@@ -1,0 +1,26 @@
+<ion-view hide-tabs='true' id='mine_other'>
+	<gl-header title="其他"></gl-header>
+    <section class="scrolltop128 bj">
+        <ion-content overflow-scroll="false">
+            <ul class="information_list cb">
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_pending">
+                    <span class="fl f40 color33">我的待结账</span>
+                    <span class="f40 cjc_money" ng-class="{true:'red',false:'bule'}[showColor]">{{debt/1000}}</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_dailiIndex">
+                    <span class="fl f40 color33">代理待结账</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                 <li class="item_box p0-24 bgff bor-bot">
+                    <span class="fl f40 color33">帮助中心</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot">
+                    <span class="fl f40 color33">规则与协议</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+            </ul>
+        </ion-content>
+    </section>
+</ion-view>

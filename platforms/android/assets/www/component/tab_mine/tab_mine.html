@@ -1,0 +1,37 @@
+<ion-view id='tab_mine'>
+    <gl-header title="我的"  back-show='true'></gl-header>
+    <section class="scrolltop128 bj">
+        <ion-content overflow-scroll="false" class="has-header">
+            <ul class="information_list cb">
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_message">
+                    <span class="fl f44 color33">我的资料</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_set">
+                    <span class="fl f44 color33">设置</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                 <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_Printing">
+                    <span class="fl f44 color33">打印/截屏</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_history">
+                    <span class="fl f44 color33">开奖历史</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_other">
+                    <span class="fl f44 color33">其他</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ui-sref="tab.mine_password">
+                    <span class="fl f44 color33">修改密码</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+                <li class="item_box p0-24 bgff bor-bot" ng-click="gotoLogout()">
+                    <span class="fl f44 color33">退出登陆</span>
+                    <div class="fr mt33"><i class="icon ion-chevron-right"></i></div>
+                </li>
+            </ul>
+        </ion-content>
+    </section>
+</ion-view>

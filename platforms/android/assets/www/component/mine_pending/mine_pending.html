@@ -1,0 +1,32 @@
+<ion-view hide-tabs='true' id='mine_pending'>
+	<gl-header title="我的待结账"></gl-header>
+	<div class="top">
+		<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="showTime = !showTime">{{{false:'显示时间',true:'关闭时间'}[showTime]}}</button>
+	</div>
+	<section class="scrolltop258 bj">
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div class="df1">序号</div>
+		    	<div class="df1">项目</div>
+		    	<div class="df1">金额</div>
+		    	<div class="df1">待结账</div>
+		    	<div class="df1">期号</div> 
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body" ng-repeat="item in list track by $index">
+			    	<div class="df">
+			        	<div class="df1">{{list.length - $index}}</div>
+			        	<div class="df1">{{{1:'收款',2:'付款',3:'亏损',4:'盈余'}[item.type]}}</div>
+			        	<div class="df1" ng-class="{true:'red',false:'blue'}[item.cash.indexOf('-') == -1]">{{item.cash/1000}}</div>
+			        	<div class="df1">{{item.debt/1000}}</div>
+			        	<div class="df1">{{item.number}}</div>
+			        </div>
+			        <div class="lh80" ng-if="showTime">
+			        	{{item.time}}
+			        </div>
+			    </div>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

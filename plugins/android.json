@@ -1,0 +1,27 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.qijianke.jcce"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.qijianke.jcce"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.qijianke.jcce"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.qijianke.jcce"
+        },
+        "com.glsh.CommonPL": {
+            "PACKAGE_NAME": "com.qijianke.jcce"
+        }
+    },
+    "dependent_plugins": {}
+}

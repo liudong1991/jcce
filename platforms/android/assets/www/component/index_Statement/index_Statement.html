@@ -1,0 +1,23 @@
+<ion-view hide-tabs='true' id='index_Statement'>
+	<gl-header title="用户报表"></gl-header>
+	<section class="scrolltop128 bj">
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div class="df1">账号</div>
+		    	<div class="df1">笔数</div>
+		    	<div class="df1">金额</div>	
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body">
+			    	<div class="df" ng-click="gotoDetail(item.isSelf,item.agentId)" ng-repeat="item in list track by $index">
+			        	<div class="df1" ng-class="{true:'bule'}[item.isSelf]">{{item.agentAccount}}</div>
+			        	<div class="df1">{{item.totalCount}}</div>
+			        	<div class="df1">{{item.totalSum/1000}}</div>
+			       </div>
+			    </div>
+			    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

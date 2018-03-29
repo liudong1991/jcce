@@ -1,0 +1,40 @@
+<ion-view hide-tabs='true' id='index_oldstateDetailmore'>
+	<gl-header title="历史报表"></gl-header>
+	<div class="button-bar bar-light p20 ">
+	          <a class="button" ng-class="{1:'button-calm'}[type]" ng-click="changeClick(1)">总报表</a>
+	          <a class="button" ng-class="{2:'button-calm'}[type]"  ng-click="changeClick(2)">交收表</a>
+	          <a class="button" ng-class="{3:'button-calm'}[type]"  ng-click="changeClick(3)">拦货表</a>
+	    </div>
+		<section class="scrolltop258 bj">
+			<div class="cjc_table">
+				<div class="df table_header">
+			    	<div class="df1">帐号</div>
+			    	<div class="df1">结果</div>
+			    	<div class="df1">笔数</div>	
+			    	<div class="df1">投注额</div>
+			    	<div class="df1">彩金</div>
+			    </div>
+			    <ion-content overflow-scroll="false">
+				    <div class="table_body">
+				    	<div class="df" ng-repeat="item in list track by $index">
+				        	<div class="df1">{{item.agentAccount}}</div>
+				        	<div class="df1" ng-class="{true:'red',false:'bule'}[item.totalResult.toString().indexOf('-') == -1]"  ng-click="gotoDetail(0,item.agentId)">{{item.totalResult/1000}}</div>
+				        	<div class="df1">{{item.totalCount}}</div>
+				        	<div class="df1">{{item.totalCash/1000}}</div>
+				        	<div class="df1" ng-click="gotoDetail(1,item.agentId)">{{item.totalHandsel/1000}}</div>
+				        </div>
+				        <div class="df">
+				        	<div class="df1">合计</div>
+				        	<div class="df1" ng-class="{true:'red',false:'bule'}[allList.totalResult.toString().indexOf('-') == -1]">{{allList.totalResult/1000}}</div>
+				        	<div class="df1">{{allList.totalCount}}</div>
+				        	<div class="df1">{{allList.totalCash/1000}}</div>
+				        	<div class="df1">{{allList.totalHandsel/1000}}</div>
+				        </div>
+				        
+				    </div>
+				    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+			    </ion-content>
+			</div>
+			
+		</section>
+</ion-view>

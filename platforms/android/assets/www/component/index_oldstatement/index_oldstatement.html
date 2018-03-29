@@ -1,0 +1,65 @@
+<ion-view hide-tabs='true' id='index_oldstatement'>
+	<gl-header title="历史报表" back="function" on-back="gotoBack()"></gl-header>
+	<div class="time" ng-if="showFirst">
+		<div class="tc" style="font-size: 0.44rem;line-height: 1rem;">开始期号</div>
+		<div class="df">
+			<div class="df1">
+				<select ng-model="user.startTime">
+	              <option ng-repeat="item in numberList" value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
+	            </select>
+			</div>
+		</div>
+		<div class="tc" style="font-size: 0.44rem;line-height: 1rem;">终止期号</div>
+		<div class="df">
+			<div class="df1">
+				<select ng-model="user.endTime">
+					<option ng-repeat="item in numberList" value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
+	            </select>
+			</div>
+		</div>
+		<button style="width: 90%;margin-left: 5%;padding: 0.16rem;" class="button button-calm ng-binding" ng-click="submitClick()">查询</button>
+	</div>
+	<div ng-if="!showFirst">
+		<div class="button-bar bar-light p10 ">
+	          <a class="button" ng-class="{1:'button-calm'}[type]" ng-click="changeClick(1)">总报表</a>
+	          <a class="button" ng-class="{2:'button-calm'}[type]"  ng-click="changeClick(2)">交收表</a>
+	          <a class="button" ng-class="{3:'button-calm'}[type]"  ng-click="changeClick(3)">拦货表</a>
+	    </div>
+	    <div class="mb10">
+			<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="showTimeClick()">{{{false:'显示各期',true:'关闭各期'}[showTime]}}</button>
+		</div>
+		<section class="scrolltop258 bj">
+			<div class="cjc_table">
+				<div class="df table_header">
+			    	<div class="df1">帐号</div>
+			    	<div class="df1">结果</div>
+			    	<div class="df1">笔数</div>	
+			    	<div class="df1">投注额</div>
+			    	<div class="df1">彩金</div>
+			   </div>
+			    <ion-content overflow-scroll="false">
+				    <div class="table_body" ng-repeat="item in list track by $index">
+				    	<div class="df" ng-class="{true:'color1'}[showTime]">
+				        	<div class="df1" ui-sref="tab.index_oldstateDetailmore({id:item.total.agentId,start:user.startTime,end:user.endTime})">{{item.total.agentAccount}}</div>
+				        	<div class="df1 bule" ng-class="{true:'red',false:'bule'}[item.total.totalResult.toString().indexOf('-') == -1]" ui-sref="tab.index_oldstateDetail({id:'0',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type})">{{item.total.totalResult/1000}}</div>
+				        	<div class="df1">{{item.total.totalCount}}</div>
+				        	<div class="df1">{{item.total.totalCash/1000}}</div>
+				        	<div class="df1" ui-sref="tab.index_oldstateDetail({id:'1',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type})">{{item.total.totalHandsel/1000}}</div>
+				        </div>
+				        <div class="table_body" ng-if="showTime">
+				        	<div class="df" ng-repeat="items in item.list track by $index">
+					        	<div class="df1">{{items.number}}</div>
+					        	<div class="df1 red">{{items.totalResult/1000}}</div>
+					        	<div class="df1">{{items.totalCount}}</div>
+					        	<div class="df1">{{items.totalCash/1000}}</div>
+					        	<div class="df1">{{items.totalHandsel/1000}}</div>
+					        </div>
+				        </div>
+				    </div>
+				    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+			    </ion-content>
+			</div>
+			
+		</section>
+	</div>
+</ion-view>

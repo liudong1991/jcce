@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.glsh.CommonPL" version="1.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>CommonPL</name>
+	<js-module name="CommonPL" src="www/CommonPL.js">
+		<clobbers target="cordova.plugins.CommonPL" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="CommonPL">
+				<param name="android-package" value="com.glsh.CommonPL.CommonPL" />
+				<param name="onload" value="true" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
+		<source-file src="src/android/CommonPL.java" target-dir="src/com/glsh/CommonPL" />
+	</platform>
+</plugin>

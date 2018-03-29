@@ -1,0 +1,16 @@
+<ion-view hide-tabs='true' id='mine_dailiSet'>
+	<gl-header title="待结帐设置" right="保存" on-click="save()"></gl-header>
+	<div class="df cjc_top">
+		<span class="df1 tc">账号：{{message.agentAccount}}</span>
+		<span class="df1 tc">名称：{{message.agentName}}</span>
+	</div>
+	<div class="p20">
+		<div class="df">
+			<div class="df1">待结帐额度</div>
+			<input type="number" class="df1" ng-model="user.maxDebt"/>
+		</div>
+		<div class="tc cjc_tip">（代理待结帐金额超出待结帐额度时，其辖下用户皆暂停下注。）</div>
+		<button class="button" ng-class="{0:'button-assertive',1:'button-balanced'}[message.debtState]" ng-click="changeState()">{{{0:'停用中',1:'启用中'}[message.debtState]}}</button>
+		<div class="tc cjc_tip">启用时必须输入大于0的整数</div>
+	</div>
+</ion-view>
