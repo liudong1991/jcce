@@ -1,0 +1,63 @@
+<ion-view hide-tabs='true' id='mine_dailiIndex'>
+	<gl-header title="代理待结帐"></gl-header>
+	<div class="p20 df">
+		<div class="df1">账号：</div>
+		<input type="text" ng-model="user.account">
+		<div class="df1">名称：</div>
+		<input type="text" ng-model="user.name">
+		<button class="button button-calm" ng-click="submit()">查询</button>
+	</div>
+	<div class="df cjc_button">
+		<div class="df1"><button class="button button-calm fl" ng-click="showName()" >{{{true:'隐藏名称',false:'显示名称'}[showTime]}}</button></div>
+		<div class="df1"><button class="button button-assertive fr" ng-click="clear()">清零</button></div>
+	</div>
+	<section class="scrolltop258 bj">
+		
+		<div class="cjc_table">
+			<div class="df table_header df">
+		    	<div class="cjc_table_checkout df">
+		    		<label class="checkbox">
+		              <input type="checkbox" ng-model="user.choose" ng-click="chooseAll()">
+		            </label>
+		           <span>账号</span>
+		    	</div>
+		    	<div class="df1">待结账</div>
+		    	<div class="df1">设置</div>
+		    	<div class="df1">录入</div>
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body" ng-repeat="item in list.list track by $index">
+			    	<div class="df">
+			        	<div class="cjc_table_checkout df">
+			        		<label class="checkbox">
+				              <input type="checkbox" ng-model="item.choose">
+				            </label>
+				            <span ui-sref="tab.mine_dailiDetail({agentId:item.agentId})">{{item.agentAccount}}</span>
+			        	</div>
+			        	<div class="df1 red" ng-class="{true:'red',false:'bule'}[item.cash.indexOf('-') == -1]">{{item.cash}}</div>
+			        	<div class="df1">
+			        		<button class="button button-balanced" ng-click="gotoSet($index)">设置</button>
+			        	</div>
+			        	<div class="df1">
+			        		<button class="button button-balanced" ng-click="gotoInput($index)">录入</button>
+			        	</div>
+			        </div>
+					<div class="lh80" ng-if="showTime">
+			        	名称：{{item.agentName}}
+			       </div>
+			    </div>
+			    <div class="table_body">
+			    	<div class="df">
+			        	<div class="cjc_table_checkout">
+			        		合计
+			        	</div>
+			        	<div class="df1 bule">{{list.totalCash/1000}}</div>
+			        	<div class="df1"></div>
+			        	<div class="df1"></div>
+			        </div>
+			    </div>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

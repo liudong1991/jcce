@@ -1,0 +1,20 @@
+#mine_dailiSet{
+    font-size: 0.44rem;
+    .cjc_top{
+        border-bottom:1px dashed #ddd ;
+        span{line-height: 1rem;}
+    }
+    .p20{
+        .df{
+            margin-bottom: 0.6rem;
+            .df1{
+                line-height: 1rem;
+            }
+            input{border: 1px solid #ddd;font-size: 0.44rem; width: 4rem; margin-top: 0.16rem;}
+        }
+        .cjc_tip{
+            font-size: 0.32rem;color: #4D4D4D;margin-bottom: 0.6rem;
+        }
+        button{width: 80%;margin-left: 10%; margin-bottom: 0.6rem;}
+    }
+}

@@ -1,0 +1,92 @@
+<ion-view hide-tabs='true' id='index_statementdetail'>
+	<gl-header title="报表详情"></gl-header>
+	<div class="top" ng-if="type == 1">
+		<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="showTimeClick()">{{{false:'显示详情',true:'关闭详情'}[showTime]}}</button>
+	</div>
+	<div class="button-bar bar-light p20 " ng-if="type == 0">
+          <a class="button " ui-sref="tab.index_withdrawalDetail({id:numberId})">撤单记录</a>
+          <a class="button"  ng-click="showTimeClick()">{{{false:'显示详情',true:'关闭详情'}[showTime]}}</a>
+          <a class="button"  ng-click="reset()">撤单</a>
+    </div>
+	<!-- <div class="top df" ng-if="type == 0">
+		<div class="df1">
+			<button style="width: 90%;margin-left: 5%" class="button button-calm" ui-sref="tab.index_withdrawalDetail">撤单记录</button>
+		</div>
+		<div class="df1">
+			<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="showTimeClick()">{{{false:'显示详情',true:'关闭详情'}[showTime]}}</button>
+		</div>
+		<div class="df1">
+			<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="reset()"></button>
+		</div>
+		
+	</div> -->
+	<section class="scrolltop258 bj">
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div class="df1">序号</div>
+		    	<div class="df1">号码</div>
+		    	<div class="df1">金额</div>
+		    	<div class="df1">赔率</div>
+		    	<div class="df1" ng-if="type == 0">
+		    		<label class="checkbox">
+		             <input type="checkbox" ng-model="show.allChoose" ng-click="chooseAll()">
+		           </label>
+		    	</div> 
+		    </div>
+		    <ion-content overflow-scroll="false">
+		    	<div ng-repeat="item in list track by $index" ng-init="outerIndex = $index">
+		    		<div class="table_body" ng-repeat="items in item.group.dataList track by $index">
+				    	<div class="df">
+				        	<div class="df1 " ng-class="{true:'color1',false:'color2'}[outerIndex%2==0]">{{allArr[outerIndex][$index]}}</div>
+				        	<div class="df1" ng-click="showMess(outerIndex)">{{items.no}}</div>
+				        	<div class="df1">{{items.cash/1000}}</div>
+				        	<div class="df1">{{items.winRate}}</div>
+				        	<div class="df1" ng-if="type == 0">
+				        		<label class="checkbox">
+					             <input type="checkbox" ng-model="items.choose">
+					           </label>
+				       		</div>
+				        </div>
+				        <div class="lh80" ng-if="showTime">
+				        	{{items.createTime}} 回水{{items.rebate/1000}}
+				        </div>
+				    </div>
+		    	</div>
+			    <!--<div class="table_body" >
+			    	<div class="df">
+			        	<div class="df1 color1">2</div>
+			        	<div class="df1" ng-click="show()">1245</div>
+			        	<div class="df1">100</div>
+			        	<div class="df1">9500</div>
+			        	<div class="df1" ng-if="type == 0">
+			        		<label class="checkbox">
+				             <input type="checkbox">
+				           </label>
+			       		</div>
+			        </div>
+			        <div class="lh80" ng-if="showTime">
+			        	2017-11-12  20:25:36 回水1.25
+			        </div>
+
+			        <div class="df">
+			        	<div class="df1 color2">2</div>
+			        	<div class="df1" ng-click="show()">1245</div>
+			        	<div class="df1">100</div>
+			        	<div class="df1">9500</div> 
+			        	<div class="df1" ng-if="type == 0">
+			        		<label class="checkbox">
+				             <input type="checkbox">
+				           </label>
+			       		</div>
+			        </div>
+			        <div class="lh80" ng-if="showTime">
+			        	2017-11-12  20:25:36 回水1.25
+			        </div>
+			    </div>-->
+			    
+			    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

@@ -1,0 +1,42 @@
+<ion-view hide-tabs='true' id='mine_Printing' style="overflow: auto;">
+	<gl-header title="打印/截屏"></gl-header>
+	<div class="top">
+		<div class="df">
+			<button class="button button-outline button-calm df1" ng-click="daying()">打印</button>
+			<button class="button button-outline button-calm df1" ng-click="screen()">截屏</button>
+			<button class="button button-outline button-calm df1" ng-click="cancel()">清空</button>
+		</div>
+		<div class="tc " id="cjc_top">
+			{{list.game}}{{list.number}}期【{{list.openTime}}】
+		</div>
+	</div>
+	<div class="cjc_table">
+		<div class="df table_header">
+	    	<div class="df1">序号</div>
+	    	<div class="df1">号码</div>
+	    	<div class="df1">金额</div>
+	    	<div class="df1">赔率</div>
+	    </div>
+	    <!--<ion-content overflow-scroll="false" style="top:4.3rem">-->
+		    <div class="table_body">
+		    	<div class="df" ng-repeat="item in list.list track by $index">
+		        	<div class="df1">{{list.list.length - $index}}</div>
+		        	<div class="df1">{{item.no}}</div>
+		        	<div class="df1">{{item.cash/1000}}</div>
+		        	<div class="df1">{{item.odds}}</div>
+		       </div>
+		        <div class="df">
+		        	<div class="df1">合计</div>
+		        	<div class="df1"></div>
+		        	<div class="df1">{{list.totalCash}}</div>
+		        	<div class="df1"></div>
+		        </div>
+		    </div>
+		    <div class="bottom tc">
+				<div>请核对注单 ，如无异议视为确认。开奖后三天内有效！</div>
+				<div>{{list.currentTime}}</div>
+			</div>
+	    <!--</ion-content>-->
+	</div>
+	
+</ion-view>

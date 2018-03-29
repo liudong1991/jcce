@@ -1,0 +1,20 @@
+<ion-view hide-tabs='true' id='mine_discount'>
+	<gl-header title="设置" on-click="save()" right="保存"></gl-header>
+	<div class="middle">
+		<div class="border">
+			<span>二字</span>
+			<select ng-options="x for x in list.dataList" ng-model="user.two"></select>
+            <span>%</span>
+		</div>
+		<div class="border">
+			<span>三字</span>
+			<select ng-options="x for x in list.dataList" ng-model="user.four"></select>
+            <span>%</span>
+		</div>
+		<div class="border">
+			<span>前四</span>
+			<select ng-options="x for x in list.dataList" ng-model="user.three"></select>
+            <span>%</span>
+		</div>
+	</div>
+</ion-view>

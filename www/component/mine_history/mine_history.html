@@ -1,0 +1,28 @@
+<ion-view hide-tabs='true' id='mine_history'>
+	<gl-header title="开奖历史"></gl-header>
+    <section class="scrolltop128 bj">
+    	<div class="cjc_table">
+    		<div class="df table_header">
+            	<div style="width: 25%">期号</div>
+            	<div style="width:35%">号码</div>
+            	<div class="df1">时间</div>
+            </div>
+            <ion-content overflow-scroll="false">
+	            <div class="table_body">
+	            	<div class="df" ng-repeat="item in list track by $index">
+		            	<div style="width: 25%">{{item.number}}</div>
+		            	<div style="font-size: 0.56rem;width:35%">
+		            		<span class="{{{true:'mr10'}[$index == 3]}}" ng-class="{true : 'red',false : 'blue'}[$index <4]" ng-repeat="items in item.score">{{items}}</span>
+		            		<!--<span class="red mr20">
+		            			
+		            			1234
+		            		</span>
+		            		<span class="blue">123</span>-->
+		            	</div>
+		            	<div class="df1 f32" style="line-height: 0.5rem;">{{item.time}}</div>
+		            </div>
+	            </div>
+            </ion-content>
+    	</div>
+    </section>
+</ion-view>

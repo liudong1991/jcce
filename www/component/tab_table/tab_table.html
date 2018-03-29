@@ -1,0 +1,34 @@
+<ion-view id='tab_table'>
+	<!--<gl-header title="表格录入"  back-show='true'></gl-header>-->
+	<div style="width: 100%;height: 0.4rem;background-color: #29ADFD;"></div>
+	<div class="cjc_scroll">
+		<div class="button-bar bar-light p20 ">
+	          <a class="button" ng-class="{0:'button-calm'}[type]" ng-click="changeClick(0,'ooxx')">口口XX</a>
+	          <a class="button" ng-class="{1:'button-calm'}[type]"  ng-click="changeClick(1,'oxox')">口X口X</a>
+	          <a class="button" ng-class="{2:'button-calm'}[type]"  ng-click="changeClick(2,'oxxo')">口XX口</a>
+	          <a class="button" ng-class="{3:'button-calm'}[type]" ng-click="changeClick(3,'xoox')">X口口X</a>
+	          <a class="button" ng-class="{4:'button-calm'}[type]"  ng-click="changeClick(4,'xoxo')">X口X口</a>
+	          <a class="button" ng-class="{5:'button-calm'}[type]"  ng-click="changeClick(5,'xxoo')">XX口口</a>
+	    </div>
+	</div>
+	<section class="scrolltop258 bj">
+		<ion-content overflow-scroll="false">
+			<div class="allDate">
+				<div class="w25 fl" ng-repeat="item in data" ng-click="itemClick($index)" ng-class="{true:'bg'}[item.check]">
+					<div class="top tc">{{item.no}}</div>
+					<div class="tc blue">{{item.odds/1000}}</div>
+				</div>
+			</div>
+			<div class="h60"></div>
+		</ion-content>
+	</section>
+	
+	<div class="cjc_btn df">
+		<div class="df1">
+			<button style="width: 90%;margin-left: 5%" class="button button-energized" ng-click="reload()">刷新</button>
+		</div>
+		<div class="df1">
+			<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="submitClick()">确定</button>
+		</div>
+	</div>
+</ion-view>

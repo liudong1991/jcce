@@ -1,0 +1,33 @@
+<ion-view hide-tabs='true' id='mine_message'>
+	<gl-header title="我的资料"></gl-header>
+	<div class="middle">
+		<div class="df">
+			<div class="df1 tr">帐号:</div>
+			<div class="df1 tc">{{list.account}}</div>
+		</div>
+		<div class="df">
+			<div class="df1 tr">信用额度:</div>
+			<div class="df1 tc">{{list.credit/1000}}</div>
+		</div>
+		<div class="df">
+			<div class="df1 tr">待结帐额度:</div>
+			<div class="df1 tc">{{list.maxBill/1000}}</div>
+		</div>
+		<div class="cjc_tip">（代理待结帐金额超出待结帐额度时，其辖下用户皆暂停下注）</div>
+	</div>
+	<div class="bottom">
+		<div class="top">占成总和</div>
+		<div class="df">
+			<div class="df1 tc">二字</div>
+			<div class="df1 tc">{{list.two}}%</div>
+		</div>
+		<div class="df">
+			<div class="df1 tc">三字</div>
+			<div class="df1 tc">{{list.three}}%</div>
+		</div>
+		<div class="df">
+			<div class="df1 tc">前四</div>
+			<div class="df1 tc">{{list.four}}%</div>
+		</div>
+	</div>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view hide-tabs='true' id='index_agency'>
+	<gl-header title="代理列表" right="{{addText}}" on-click="gotoAdd()"></gl-header>
+	<div class="p20 df">
+		<div class="df1">账号：</div>
+		<input type="text" ng-model="user.account">
+		<div class="df1">名称：</div>
+		<input type="text" ng-model="user.name">
+		<button class="button button-calm" ng-click="submit()">查询</button>
+	</div>
+	<section class="scrolltop258 bj">
+		
+		<div class="cjc_table">
+			<div class="df table_header">
+		    	<div class="df1">账号</div>
+		    	<div class="df1">名称</div>
+		    	<div class="df1">下级</div>
+		    	<div class="df1">状态</div>
+		    	<div class="df1" ng-if="type == 0">详情</div>
+		    </div>
+		    <ion-content overflow-scroll="false">
+			    <div class="table_body">
+			    	<div class="df" ng-repeat="item in list track by $index">
+			        	<div class="df1">{{item.agentAccount}}</div>
+			        	<div class="df1">{{item.agentName}}</div>
+			        	<div class="df1" ng-click="gotoDetail(item.agentId,item.subUserCount)">{{item.subUserCount}}</div>
+			        	<div class="df1">
+			        		<button class="button" ng-click="setStatus(item.agentId,item.state,$index)" ng-class="{1:'button-balanced',2:'button-assertive'}[item.state]" ng-disabled="type != 0">{{{1:'启用中',2:'停用中'}[item.state]}}</button>
+			        	</div>
+			        	<div class="df1" ng-if="type == 0">
+			        		<button class="button button-calm" ui-sref="tab.index_addagency({id:item.agentId})">详情</button>
+			        	</div>
+			       </div>
+			    </div>
+		    </ion-content>
+		</div>
+		
+	</section>
+</ion-view>

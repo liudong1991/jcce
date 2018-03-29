@@ -1,0 +1,38 @@
+<ion-view hide-tabs='true' id='mine_dailiInput'>
+	<gl-header title="金额录入"></gl-header>
+	<div class="df cjc_top">
+		<span class="df1 tc">账号：{{message.agentAccount}}</span>
+		<span class="df1 tc">名称：{{message.agentName}}</span>
+	</div>
+	<div class="button-bar">
+          <a class="button" ng-class="{2:'button-calm'}[type]" ng-click="changeType(2)">代理付款</a>
+          <a class="button" ng-class="{1:'button-calm'}[type]" ng-click="changeType(1)">代理收款</a>
+    </div>
+    <div class="bg">
+		{{user.money}}
+		<span ng-show="bgfoucs"></span>
+	</div>
+    <div class="cjc_input tc"></div>
+    <div class="keyword">
+		<div class="input">
+			<div class="cjc_click">
+				<div class="w25 fl" ng-click="numClick(7)">7</div>
+				<div class="w25 fl" ng-click="numClick(8)">8</div>
+				<div class="w25 fl nobdr" ng-click="numClick(9)">9</div>
+				<div class="w25 fl" ng-click="numClick(4)">4</div>
+				<div class="w25 fl" ng-click="numClick(5)">5</div>
+				<div class="w25 fl nobdr" ng-click="numClick(6)">6</div>
+				<div class="w25 fl" ng-click="numClick(1)">1</div>
+				<div class="w25 fl" ng-click="numClick(2)">2</div>
+				<div class="w25 fl nobdr" ng-click="numClick(3)">3</div>
+				<div class="w25 fl" ng-click="numClick(0)">0</div>
+				<div class="w25 fl" ng-click="numClick('.')">.</div>
+				<div class="w25 fl nobdr" ng-click="numClick('<')"><</div>
+				<div class="w75 fl nobdr">
+					<button class="button button-calm" ng-click="submitClick()">保存</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</ion-view>

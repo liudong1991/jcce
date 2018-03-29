@@ -1,0 +1,88 @@
+<ion-view hide-tabs='true' id='index_addagency'>
+	<gl-header title="{{title}}" right="保存" on-click="save()"></gl-header>
+	<section class="scrolltop128 bj">
+		<ion-content overflow-scroll="false">
+			<div class="middle">
+				<div class="df">
+					<div class="df1 tr">帐号: <span ng-if="type == 0">{{initData.prefix}}</span></div>
+					<div class="df1 tc"><input type="text" ng-disabled="type != 0" ng-model="user.account"></div>
+					<div class="df1" ng-if="type == 0">
+						<button class="button button-calm" ng-click="checkout()">检索</button>
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tr">名称:</div>
+					<div class="df1 tc">
+						<input type="text" ng-model="user.name">
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tr">密码:</div>
+					<div class="df1 tc"><input type="password" ng-model="user.passwd" ng-focus="getFoucs()"></div>
+				</div>
+				<div class="df">
+					<div class="df1 tr">信用额度:</div>
+					<div class="df1 tc"><input type="number" ng-model="user.credit"></div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="top">我的赚水（%）</div>
+				<div class="df">
+					<div class="df1 tc">二字</div>
+					<div class="df1 tc">
+						<select ng-model="user.profitTwo">
+			              <option value="{{item}}" ng-repeat="item in initData.prifitList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tc">三字</div>
+					<div class="df1 tc">
+						<select ng-model="user.profitThree">
+			              <option ng-repeat="item in initData.prifitList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tc">前四</div>
+					<div class="df1 tc">
+						<select ng-model="user.profitFour">
+			              <option ng-repeat="item in initData.prifitList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="top">占成总和（%）</div>
+				<div class="df">
+					<div class="df1 tc">二字</div>
+					<div class="df1 tc">
+						<select ng-model="user.interceptTwo">
+			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tc">三字</div>
+					<div class="df1 tc">
+						<select ng-model="user.interceptThree">
+			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+				<div class="df">
+					<div class="df1 tc">前四</div>
+					<div class="df1 tc">
+						<select ng-model="user.interceptFour">
+			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			            </select>
+					</div>
+				</div>
+			</div>
+			<div class="bottom" ng-if="type != 0">
+				<div class="top">开设时间{{user.createTime}}</div>
+			</div>
+		</ion-content>
+	</section>
+
+</ion-view>

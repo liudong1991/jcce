@@ -1,0 +1,8 @@
+<ion-view hide-tabs='true' id='option'>
+	<gl-header title="彩种选择" back-show='true'></gl-header>
+	<div class="middle">
+		<p ng-repeat="item in List">
+			<button class="button" ng-class="{0:'button-positive',1:'button-calm',2:'button-balanced'}[$index]" ng-click="gotoLogin(item.baseUrl)">{{item.name}}</button>
+     	</p>
+	</div>
+</ion-view>

@@ -1,0 +1,541 @@
+<ion-view id='tab_portfolio'>
+	<div ng-show="showTable" id="tab_table">
+		<gl-header title="{{PrepareBuyData.number}}期" back="function" on-back="hideTable()"></gl-header>
+		<section class="scrolltop128 bj">
+			<div class="cjc_table">
+				<div class="df table_header">
+			    	<div class="df1">序号</div>
+			    	<div class="df1">号码</div>
+			    	<div class="df1">金额</div>
+			    	<div class="df1">赔率</div>
+			    	<div class="df1">
+			    		<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.chooseAll" ng-click="chooseAllList()">
+			             	<span class="tip"></span>
+			            </label>
+			    	</div>
+			    </div>
+			    <ion-content overflow-scroll="false" class="table_content" delegate-handle="mainScroll">
+				    <div class="table_body">
+				    	<div class="df" ng-repeat="item in PrepareBuyData.list">
+				        	<div class="df1">{{$index+1}}</div>
+				        	<div class="df1">{{item.no}}</div>
+				        	<div class="df1">{{item.cash/1000}}</div>
+				        	<div class="df1">{{item.odds/1000}}</div>
+				        	<div class="df1">
+					    		<label class="checkbox">
+					             	<input type="checkbox" ng-model="item.choose">
+					             	<span class="tip"></span>
+					            </label>
+					    	</div>
+				        </div>
+				        
+				    </div>
+			    </ion-content>
+			</div>
+			
+		</section>
+		<div class="keyword">
+			<div class="allMsg df">
+				<div class="df1 tc">号码个数 {{PrepareBuyData.list.length}}</div>
+				<div class="df1 tc">金额 {{PrepareBuyData.totalCash/1000}}</div>
+			</div>
+			<div class="p20 df">
+				<div class="df1">
+					<button style="width: 90%;margin-left: 5%" class="button button-energized" ng-click="hideTable()">返回</button>
+				</div>
+				<div class="df1">
+					<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="submitClick0()">下注</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<gl-header title="组合录入"  back-show='true' right="重置" on-click="reset()"></gl-header>-->
+	<div style="width: 100%;height: 0.4rem;background-color: #29ADFD;"></div>
+	<div class="button-bar bar-light">
+          <a class="button" style="border-radius: 0;" ng-class="{0:'button-assertive'}[type0]" ng-click="typeClick(0)">二字</a>
+          <a class="button" style="border-radius: 0;" ng-class="{1:'button-assertive'}[type0]"  ng-click="typeClick(1)">三字</a>
+          <a class="button" style="border-radius: 0;" ng-class="{2:'button-assertive'}[type0]"  ng-click="typeClick(2)">前四</a>
+          <a class="button" style="border-radius: 0;" ng-click="reset()">重置</a>
+          
+    </div>
+	<div class="cjc_scroll">
+		<div class="button-bar bar-light p20 " ng-if="type0 == 0">
+	          <a class="button" ng-class="{0:'button-calm'}[type]" ng-click="changeClick(0)">口口XX</a>
+	          <a class="button" ng-class="{1:'button-calm'}[type]"  ng-click="changeClick(1)">口X口X</a>
+	          <a class="button" ng-class="{2:'button-calm'}[type]"  ng-click="changeClick(2)">口XX口</a>
+	          <a class="button" ng-class="{3:'button-calm'}[type]" ng-click="changeClick(3)">X口口X</a>
+	          <a class="button" ng-class="{4:'button-calm'}[type]"  ng-click="changeClick(4)">X口X口</a>
+	          <a class="button" ng-class="{5:'button-calm'}[type]"  ng-click="changeClick(5)">XX口口</a>
+	    </div>
+	    <div class="button-bar bar-light " ng-if="type0 == 1" style="width: 100%;">
+	          <a class="button" ng-class="{3:'button-calm'}[type]" ng-click="changeClick(3)">X口口口</a>
+	          <a class="button" ng-class="{2:'button-calm'}[type]"  ng-click="changeClick(2)">口X口口</a>
+	          <a class="button" ng-class="{1:'button-calm'}[type]"  ng-click="changeClick(1)">口口X口</a>
+	          <a class="button" ng-class="{0:'button-calm'}[type]" ng-click="changeClick(0)">口口口X</a>
+	    </div>
+	</div>
+	<section class="scrolltop258 bj" ng-class="{2:'scrolltop'}[type0]">
+		<ion-content overflow-scroll="false">
+			<div>
+				<div class="title">数 位</div>
+				<div ng-if="weishuArr[type0][type][0]">
+					<div class="df border">
+						<div class="df1 tc lh90">千位</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.qianP">
+				             	<span class="tip">排除</span>
+						</div>
+					</div>
+					<div class="bg" ng-click="input('qian',1,1,$event)">
+						{{user.qian}}
+						<span ng-if="bgfoucs && inputNum == 1"></span>
+					</div>
+				</div>
+				<div ng-if=" weishuArr[type0][type][1]">
+					<div class="df border">
+						<div class="df1 tc lh90">百位</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.baiP">
+				             	<span class="tip">排除</span>
+						</div>
+					</div>
+					<div class="bg" ng-click="input('bai',2,1,$event)">
+						{{user.bai}}
+						<span ng-if="bgfoucs && inputNum == 2"></span>
+					</div>
+				</div>
+				<div ng-if="weishuArr[type0][type][2]">
+					<div class="df border">
+						<div class="df1 tc lh90">十位</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.shiP">
+				             	<span class="tip">排除</span>
+				            </label>
+						</div>
+					</div>
+					<div class="bg" ng-click="input('shi',3,1,$event)">
+						{{user.shi}}
+						<span ng-if="bgfoucs && inputNum == 3"></span>
+					</div>
+				</div>
+				<div ng-if="weishuArr[type0][type][3]">
+					<div class="df border">
+						<div class="df1 tc lh90">个位</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.geP">
+				             	<span class="tip">排除</span>
+						</div>
+					</div>
+					<div class="bg" ng-click="input('ge',4,1,$event)">
+						{{user.ge}}
+						<span ng-if="bgfoucs && inputNum == 4"></span>
+					</div>
+				</div>
+				
+				<div class="title">合 数</div>
+				<div class="df" ng-if="type0 == 0">
+					<div class="df1 item">
+						<div class="bg" ng-click="input('heshu0',5,1,$event)">
+							{{user.heshu0}}
+							<span ng-if="bgfoucs && inputNum == 5"></span>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.heshu0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div ng-if="type0 != 0">
+					<div class="df border ">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.heshuArr0 track by $index">
+				             	<input type="checkbox" ng-model="user.heshuArr0[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.heshu0P">
+				             	<span class="tip">排除</span>
+				            </label>
+				            
+						</div>
+					</div>
+					<div class="bg" ng-click="input('heshu0',5,1,$event)">
+						{{user.heshu0}}
+						<span ng-if="bgfoucs && inputNum == 5"></span>
+					</div>
+					<div class="df border ">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.heshuArr1 track by $index">
+				             	<input type="checkbox" ng-model="user.heshuArr1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+
+						</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.heshu1P">
+				             	<span class="tip">排除</span>
+				            </label>
+				            
+						</div>
+					</div>
+					<div class="bg" ng-click="input('heshu1',6,1,$event)">
+						{{user.heshu1}}
+						<span ng-if="bgfoucs && inputNum == 6"></span>
+					</div>
+				</div>
+				
+				<div class="title">对 数</div>
+				<div class="df" ng-if="type0 == 0">
+					<div class="df1 item">
+						<label class="checkbox" ng-click="input('duishu0',0,0,$event)">
+			             	<input type="checkbox" ng-model="user.duishu0">
+			             	<span class="tip">对数</span>
+			            </label>
+			            
+					</div>
+					<div class="df1 item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.duishu0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+
+				<div class="df border" ng-if="type0 != 0">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.duishu1 track by $index" ng-click="input('duishu1',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.duishu1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.duishu1P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df" ng-if="type0 != 0">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.duishu2 track by $index" ng-click="input('duishu2',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.duishu2[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.duishu2P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+
+				</div>
+
+
+				<div class="title">双 重</div>
+				<div class="df" ng-if="type0 == 0">
+					<div class="df1 item">
+						<label class="checkbox"  ng-click="input('shuangchong0',0,0,$event)">
+			             	<input type="checkbox" ng-model="user.shuangchong0">
+			             	<span class="tip">双重</span>
+			            </label>
+			            
+					</div>
+					<div class="df1 item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.shuangchong0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df border" ng-if="type0 != 0">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.shuangchong1 track by $index" ng-click="input('duishu1',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.shuangchong1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.shuangchong1P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df" ng-if="type0 != 0">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.shuangchong2 track by $index" ng-click="input('shuangchong2',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.shuangchong2[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.shuangchong2P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+
+				</div>
+				<div class="title">全 倒</div>
+				<div class="df">
+					<div class="df1 item">
+						<div class="bg" ng-click="input('quandao',7,1,$event)">
+							{{user.quandao}}
+							<span ng-if="bgfoucs && inputNum == 7"></span>
+						</div>
+					</div>
+					<!--<div class="bg" ng-click="input('heshu1',6,1,$event)">
+						{{user.heshu1}}
+						<span ng-if="bgfoucs && inputNum == 6"></span>
+					</div>-->
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.quandaoP">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="title" ng-if="type0 != 2">二 兄 弟</div>
+				<div class="df" ng-if="type0 == 0">
+					<div class="df1 item">
+						<label class="checkbox"  ng-click="input('erxiongdi0',0,0,$event)">
+			             	<input type="checkbox" ng-model="user.erxiongdi0">
+			             	<span class="tip">二兄弟</span>
+			            </label>
+			            
+					</div>
+					<div class="df1 item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.erxiongdi0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df border" ng-if="type0 == 1">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.erxiongdi1 track by $index" ng-click="input('erxiongdi1',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.erxiongdi1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.erxiongdi1P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df" ng-if="type0 == 1">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.erxiongdi2 track by $index" ng-click="input('erxiongdi2',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.erxiongdi2[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.erxiongdi2P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+
+				</div>
+
+				<!-- 三兄弟 -->
+				<div class="title"  ng-if="type0 != 0">三 兄 弟</div>
+				<div class="df"  ng-if="type0 == 1">
+					<div class="df1 item">
+						<label class="checkbox" ng-click="input('sanxiongdi0',0,0,$event)">
+			             	<input type="checkbox" ng-model="user.sanxiongdi0">
+			             	<span class="tip">三兄弟</span>
+			            </label>
+			            
+					</div>
+					<div class="df1 item">
+						<label class="checkbox" >
+			             	<input type="checkbox" ng-model="user.sanxiongdi0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div class="df" ng-if="type0 == 2">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.sanxiongdi1 track by $index" ng-click="input('sanxiongdi1',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.sanxiongdi1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.sanxiongdi1P">
+			             	<span class="tip">排除</span>
+			            </label>
+					</div>
+				</div>
+				<div class="df" ng-if="type0 == 2">
+					<div class="df1 item">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.sanxiongdi2 track by $index" ng-click="input('sanxiongdi2',0,0,$event)">
+				             	<input type="checkbox" ng-model="user.sanxiongdi2[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+						</div>
+					</div>
+					<div class="item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.sanxiongdi2P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+
+				</div>
+				<!-- 四兄弟 -->
+				<div class="title"  ng-if="type0 == 2">四 兄 弟</div>
+				<div class="df"  ng-if="type0 == 2">
+					<div class="df1 item">
+						<label class="checkbox" ng-click="input('sixiongdi0',0,0,$event)">
+			             	<input type="checkbox" ng-model="user.sixiongdi0">
+			             	<span class="tip">四兄弟</span>
+			            </label>
+			            
+					</div>
+					<div class="df1 item">
+						<label class="checkbox">
+			             	<input type="checkbox" ng-model="user.sixiongdi0P">
+			             	<span class="tip">排除</span>
+			            </label>
+			            
+					</div>
+				</div>
+				<div ng-if="type0 != 0" class="title">值 数</div>
+				<div ng-if="type0 != 0">
+					<div class="df border ">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.zhishuArr0 track by $index">
+				             	<input type="checkbox" ng-model="user.zhishuArr0[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+
+						</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox"  ng-model="user.zhishuArr0P">
+				             	<span class="tip">排除</span>
+				            </label>
+				            
+						</div>
+					</div>
+					<div class="df">
+						<div class="df1 bg" ng-click="input('zhishu0',8,2,$event)">
+							{{user.zhishu0}}
+							<span ng-if="bgfoucs && inputNum == 8"></span>
+						</div>
+						
+						<div class="df1 bg" ng-click="input('zhishu1',9,2,$event)">
+							{{user.zhishu1}}
+							<span ng-if="bgfoucs && inputNum == 9"></span>
+						</div>
+					</div>
+					<div class="df border ">
+						<div class="df1 pt20 cjc_checkbox">
+							<label class="checkbox" ng-repeat="item in user.zhishuArr1 track by $index">
+				             	<input type="checkbox" ng-model="user.zhishuArr1[$index]" ng-show="weishuArr[type0][type][$index]">
+				             	<span class="tip" ng-show="!weishuArr[type0][type][$index]">X</span>
+				            </label>
+
+						</div>
+						<div class="item">
+							<label class="checkbox">
+				             	<input type="checkbox" ng-model="user.zhishuArr1P">
+				             	<span class="tip">排除</span>
+				            </label>
+				            
+						</div>
+					</div>
+					<div class="df">
+						<div class="df1 bg" ng-click="input('zhishu2',10,2,$event)">
+							{{user.zhishu2}}
+							<span ng-if="bgfoucs && inputNum == 10"></span>
+						</div>
+						<div class="df1 bg" ng-click="input('zhishu3',11,2,$event)">
+							{{user.zhishu3}}
+							<span ng-if="bgfoucs && inputNum == 11"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 4.4rem;" ng-if="showKeyword"></div>
+		</ion-content>
+	</section>
+	<!--<div class="fixbg" ng-if="showKeyword"  ng-click="close()"></div>-->
+	<div class="keyword" ng-if="showKeyword">
+		<div class="input">
+			<div class="df top">
+				<div class="df1 colorff tc f44">每注金额(元)</div>
+				<div class="df1">
+					<div class="bg" ng-click="input('money',0,0,$event)">{{user.money}}<span ng-show="bgfoucs && inputNum == 0"></span></div>
+				</div>
+			</div>
+			<div class="cjc_click">
+				<div class="w25 fl" ng-click="numClick(1)">1</div>
+				<div class="w25 fl" ng-click="numClick(2)">2</div>
+				<div class="w25 fl" ng-click="numClick(3)">3</div>
+				<div class="w25 fl" ng-click="numClick(4)">4</div>
+				<div class="w25 fl" ng-click="numClick(5)">5</div>
+				<div class="w25 fl" ng-click="numClick('.')">.</div>
+				<div class="w25 fl" ng-click="numClick(6)">6</div>
+				<div class="w25 fl" ng-click="numClick(7)">7</div>
+				<div class="w25 fl" ng-click="numClick(8)">8</div>
+				<div class="w25 fl" ng-click="numClick(9)">9</div>
+				<div class="w25 fl" ng-click="numClick(0)">0</div>
+				<div class="w25 fl" ng-click="numClick('<')"><</div>
+			</div>
+		</div>
+		<div class="p10 df">
+			<div class="df1">
+				<button style="width: 90%;margin-left: 5%" class="button button-energized" ng-click="close()">关闭</button>
+			</div>
+			<div class="df1">
+				<button style="width: 90%;margin-left: 5%" class="button button-calm" ng-click="submitClick()">下一步</button>
+			</div>
+		</div>
+	</div>
+</ion-view>
