@@ -1,31 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width,viewport-fit=cover">
-    <meta name="format-detection" content="telephone=no" />
-    <title>给乐生活</title>
-    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
-    <link href="css/all.min.css" rel="stylesheet">
-    <script>
-      var deviceWidth = document.documentElement.clientWidth;
-      if(deviceWidth > 640) deviceWidth = 640;
-      document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
-    </script>
 
-  </head>
-  <body ng-app="starter" id="test" style="width:7.5rem" class="platform-android platform-cordova platform-webview">
-    <ion-nav-view name="tab"></ion-nav-view>
-  </body>
-  <script>
-    var myWidth = document.getElementById('test').clientWidth
-      if(myWidth !=deviceWidth){
-        document.documentElement.style.fontSize =deviceWidth / 7.5 - (myWidth - deviceWidth)/7.5 + 'px';
-      }
-  </script>
-  <script src="cordova.js"></script>
-  <script src="lib/ionic/js/ionic.bundle.min.js"></script>
-  <script src="config.js"></script>
-  <script src="lib/qrcode.min.js"></script>
-  <script src="js/all.min.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width,viewport-fit=cover">
+		<meta name="format-detection" content="telephone=no" />
+		<title>给乐生活</title>
+		<link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+		<link href="css/all.min.css" rel="stylesheet">
+		<style type="text/css">
+			.visibilityH{opacity: 0 !important;}
+			.visibilityV{opacity: 1 !important;}
+			.visibilityH .view-container{height: 100px !important;}
+		</style>
+		<script>
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 640) deviceWidth = 640;
+			document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		</script>
+
+	</head>
+
+	<body id="test" style="width:7.5rem" class="platform-android platform-cordova platform-webview">
+		<div ng-app="starter">
+			<div id='mine_Printing' class="hide" ng-class="{true:'show'}[$root.screen]">
+				<div class="top">
+					<div class="tc " id="cjc_top" ng-cloak>
+						{{list.game}}{{list.number}}期【{{list.openTime}}】
+					</div>
+				</div>
+				<div class="cjc_table">
+					<div class="df table_header">
+						<div class="df1">序号</div>
+						<div class="df1">号码</div>
+						<div class="df1">金额</div>
+						<div class="df1">赔率</div>
+					</div>
+					<!--<ion-content overflow-scroll="true" style="top:4.3rem">-->
+					<div class="table_body">
+						<div class="df" ng-repeat="item in list.list track by $index">
+							<div class="df1" ng-cloak>{{list.list.length - $index}}</div>
+							<div class="df1" ng-cloak>{{item.no}}</div>
+							<div class="df1" ng-cloak>{{item.cash/1000}}</div>
+							<div class="df1" ng-cloak>{{item.odds/1000}}</div>
+						</div>
+						<div class="df">
+							<div class="df1">合计</div>
+							<div class="df1"></div>
+							<div class="df1" ng-cloak>{{list.totalCash/1000}}</div>
+							<div class="df1"></div>
+						</div>
+					</div>
+					<div class="bottom tc">
+						<div>请核对注单 ，如无异议视为确认。开奖后三天内有效！</div>
+						<div ng-cloak>{{list.currentTime}}</div>
+					</div>
+					<!--</ion-content>-->
+				</div>
+			</div>
+			<div style="" ng-class="{true:'visibilityH',false:'visibilityV'}[$root.screen]">
+				<ion-nav-view name="tab" ></ion-nav-view>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		var myWidth = document.getElementById('test').clientWidth
+		if(myWidth != deviceWidth) {
+			document.documentElement.style.fontSize = deviceWidth / 7.5 - (myWidth - deviceWidth) / 7.5 + 'px';
+		}
+	</script>
+	<script src="cordova.js"></script>
+	<script src="lib/ionic/js/ionic.bundle.min.js"></script>
+	<script src="config.js"></script>
+	<script src="js/all.min.js"></script>
 </html>

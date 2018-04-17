@@ -17,7 +17,7 @@
 			    	<div class="df">
 			        	<div class="df1">{{list.length - $index}}</div>
 			        	<div class="df1">{{{1:'收款',2:'付款',3:'亏损',4:'盈余'}[item.type]}}</div>
-			        	<div class="df1" ng-class="{true:'red',false:'blue'}[item.cash.indexOf('-') == -1]">{{item.cash/1000}}</div>
+			        	<div class="df1" ng-class="{true:'red',false:'bule'}[item.cash > 0]">{{item.cash/1000}}</div>
 			        	<div class="df1">{{item.debt/1000}}</div>
 			        	<div class="df1">{{item.number}}</div>
 			        </div>

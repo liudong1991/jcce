@@ -1,5 +1,5 @@
 <ion-view  hide-tabs='true'  id='tab_login' >
-    <gl-header title="用户登陆" back-show='true'></gl-header>
+    <gl-header title="用户登陆"></gl-header>
     <div class="middle">
         <div class="df">
             <div>账户：</div>
@@ -14,11 +14,14 @@
             <input  type="text" class="df1" placeholder="请输入验证码" ng-model="user.code">
         </div>
         <div class="df">
-            <div></div>
-            <div class="img">
-                
-            </div>
+            <div style="width:2.4rem"> </div>
+            <img src="{{imgUrl}}" alt="" class="df1" style="height: 0.8rem;"/>
         </div>
-        <button class="button button-calm" ng-click="gotoLogin()">登陆</button>
+        <div class="df">
+            <div style="width:2.4rem"> </div>
+            <div class="df1" style="text-align: center;color:#3699f1;" ng-click="changeImg()"> 换一张</div>
+        </div>
+        
+        <button class="button button-calm" ng-click="gotoLogin()" style="padding: 0.2rem;">登陆</button>
     </div>
 </ion-view>

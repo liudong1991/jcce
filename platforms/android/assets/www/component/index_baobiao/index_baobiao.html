@@ -14,10 +14,10 @@
 		    </div>
 		    <ion-content overflow-scroll="false">
 			    <div class="table_body">
-			    	<div class="df" ui-sref="tab.index_Statement({id:item.numberId,type:type})" ng-repeat="item in list track by $index">
-			        	<div class="df1">{{item.number}}</div>
-			        	<div class="df1">{{item.totalCount}}</div>
-			        	<div class="df1">{{item.totalSum/1000}}</div>
+			    	<div class="df" ng-repeat="item in list track by $index">
+			        	<div class="df1" ui-sref="tab.index_Statement({id:item.numberId,type:type,agentId:-1})">{{item.number}}</div>
+			        	<div class="df1" ng-click="gotoDetail(item.numberId,item.agentId,item.grade)">{{item.totalCount}}</div>
+			        	<div class="df1" ng-click="gotoDetail(item.numberId,item.agentId,item.grade)">{{item.totalSum/1000}}</div>
 			       </div>
 			    </div>
 			    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>

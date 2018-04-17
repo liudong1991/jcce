@@ -40,9 +40,9 @@
 				        	<div class="df1 " ng-class="{true:'color1',false:'color2'}[outerIndex%2==0]">{{allArr[outerIndex][$index]}}</div>
 				        	<div class="df1" ng-click="showMess(outerIndex)">{{items.no}}</div>
 				        	<div class="df1">{{items.cash/1000}}</div>
-				        	<div class="df1">{{items.winRate}}</div>
+				        	<div class="df1">{{items.winRate/1000}}</div>
 				        	<div class="df1" ng-if="type == 0">
-				        		<label class="checkbox">
+				        		<label class="checkbox" ng-if="items.cancelable">
 					             <input type="checkbox" ng-model="items.choose">
 					           </label>
 				       		</div>
@@ -52,37 +52,6 @@
 				        </div>
 				    </div>
 		    	</div>
-			    <!--<div class="table_body" >
-			    	<div class="df">
-			        	<div class="df1 color1">2</div>
-			        	<div class="df1" ng-click="show()">1245</div>
-			        	<div class="df1">100</div>
-			        	<div class="df1">9500</div>
-			        	<div class="df1" ng-if="type == 0">
-			        		<label class="checkbox">
-				             <input type="checkbox">
-				           </label>
-			       		</div>
-			        </div>
-			        <div class="lh80" ng-if="showTime">
-			        	2017-11-12  20:25:36 回水1.25
-			        </div>
-
-			        <div class="df">
-			        	<div class="df1 color2">2</div>
-			        	<div class="df1" ng-click="show()">1245</div>
-			        	<div class="df1">100</div>
-			        	<div class="df1">9500</div> 
-			        	<div class="df1" ng-if="type == 0">
-			        		<label class="checkbox">
-				             <input type="checkbox">
-				           </label>
-			       		</div>
-			        </div>
-			        <div class="lh80" ng-if="showTime">
-			        	2017-11-12  20:25:36 回水1.25
-			        </div>
-			    </div>-->
 			    
 			    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
 		    </ion-content>

@@ -9,10 +9,10 @@
 		    </div>
 		    <ion-content overflow-scroll="false">
 			    <div class="table_body">
-			    	<div class="df" ng-click="gotoDetail(item.isSelf,item.agentId)" ng-repeat="item in list track by $index">
-			        	<div class="df1" ng-class="{true:'bule'}[item.isSelf]">{{item.agentAccount}}</div>
-			        	<div class="df1">{{item.totalCount}}</div>
-			        	<div class="df1">{{item.totalSum/1000}}</div>
+			    	<div class="df"  ng-repeat="item in list track by $index">
+			        	<div class="df1" ng-class="{true:'bule'}[item.isSelf]" ng-click="gotoOther(item.isSelf,item.numberId,item.agentId,item.grade)">{{item.agentAccount}}</div>
+			        	<div class="df1" ng-click="gotoDetail(item.isSelf,item.agentId,item.grade)">{{item.totalCount}}</div>
+			        	<div class="df1" ng-click="gotoDetail(item.isSelf,item.agentId,item.grade)">{{item.totalSum/1000}}</div>
 			       </div>
 			    </div>
 			    <ion-infinite-scroll ng-if="can_loadmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>

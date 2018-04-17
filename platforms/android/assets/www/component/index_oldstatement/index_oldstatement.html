@@ -5,7 +5,7 @@
 		<div class="df">
 			<div class="df1">
 				<select ng-model="user.startTime">
-	              <option ng-repeat="item in numberList" value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
+	              <option ng-repeat="item in numberList track by $index" selected value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
 	            </select>
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 		<div class="df">
 			<div class="df1">
 				<select ng-model="user.endTime">
-					<option ng-repeat="item in numberList" value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
+					<option ng-repeat="item in numberList track by $index" selected value="{{item.numberId}}">{{item.number}}期 （{{item.time}}）</option>
 	            </select>
 			</div>
 		</div>
@@ -40,19 +40,19 @@
 			    <ion-content overflow-scroll="false">
 				    <div class="table_body" ng-repeat="item in list track by $index">
 				    	<div class="df" ng-class="{true:'color1'}[showTime]">
-				        	<div class="df1" ui-sref="tab.index_oldstateDetailmore({id:item.total.agentId,start:user.startTime,end:user.endTime})">{{item.total.agentAccount}}</div>
-				        	<div class="df1 bule" ng-class="{true:'red',false:'bule'}[item.total.totalResult.toString().indexOf('-') == -1]" ui-sref="tab.index_oldstateDetail({id:'0',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type})">{{item.total.totalResult/1000}}</div>
+				        	<div class="df1" ui-sref="tab.index_oldstateDetailmore({id:item.total.agentId,start:user.startTime,end:user.endTime,type:type})">{{item.total.agentAccount}}</div>
+				        	<div class="df1 bule" ng-class="{true:'red',false:'bule'}[item.total.totalResult.toString().indexOf('-') == -1]" ui-sref="tab.index_oldstateDetail({id:'0',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type,grade:item.total.grade,numberId:-1})">{{item.total.totalResult/1000}}</div>
 				        	<div class="df1">{{item.total.totalCount}}</div>
 				        	<div class="df1">{{item.total.totalCash/1000}}</div>
-				        	<div class="df1" ui-sref="tab.index_oldstateDetail({id:'1',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type})">{{item.total.totalHandsel/1000}}</div>
+				        	<div class="df1" ui-sref="tab.index_oldstateDetail({id:'1',agentIds:item.total.agentId,beginNumberId:user.startTime,endNumberId:user.endTime,type:type,grade:item.total.grade,numberId:-1})">{{item.total.totalHandsel/1000}}</div>
 				        </div>
 				        <div class="table_body" ng-if="showTime">
 				        	<div class="df" ng-repeat="items in item.list track by $index">
 					        	<div class="df1">{{items.number}}</div>
-					        	<div class="df1 red">{{items.totalResult/1000}}</div>
-					        	<div class="df1">{{items.totalCount}}</div>
+					        	<div class="df1" ng-class="{true:'red',false:'bule'}[items.totalResult.toString().indexOf('-') == -1]" ui-sref="tab.index_oldstateDetail({id:'0',agentIds:items.agentId,numberId:items.numberId,type:type,grade:items.grade})">{{items.totalResult/1000}}</div>
+					        	<div class="df1" >{{items.totalCount}}</div>
 					        	<div class="df1">{{items.totalCash/1000}}</div>
-					        	<div class="df1">{{items.totalHandsel/1000}}</div>
+					        	<div class="df1" ui-sref="tab.index_oldstateDetail({id:'1',agentIds:items.agentId,numberId:items.numberId,type:type,grade:items.grade})">{{items.totalHandsel/1000}}</div>
 					        </div>
 				        </div>
 				    </div>

@@ -7,7 +7,7 @@
 	<div class="p20">
 		<div class="df">
 			<div class="df1">待结帐额度</div>
-			<input type="number" class="df1" ng-model="user.maxDebt"/>
+			<input type="number" class="df1" ng-model="user.maxDebt" style="padding: 0.1rem;"/>
 		</div>
 		<div class="tc cjc_tip">（代理待结帐金额超出待结帐额度时，其辖下用户皆暂停下注。）</div>
 		<button class="button" ng-class="{0:'button-assertive',1:'button-balanced'}[message.debtState]" ng-click="changeState()">{{{0:'停用中',1:'启用中'}[message.debtState]}}</button>

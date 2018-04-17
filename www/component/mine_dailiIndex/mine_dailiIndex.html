@@ -1,9 +1,9 @@
 <ion-view hide-tabs='true' id='mine_dailiIndex'>
 	<gl-header title="代理待结帐"></gl-header>
 	<div class="p20 df">
-		<div class="df1">账号：</div>
+		<div class="df1 f34">账号：</div>
 		<input type="text" ng-model="user.account">
-		<div class="df1">名称：</div>
+		<div class="df1 f34">名称：</div>
 		<input type="text" ng-model="user.name">
 		<button class="button button-calm" ng-click="submit()">查询</button>
 	</div>
@@ -34,7 +34,7 @@
 				            </label>
 				            <span ui-sref="tab.mine_dailiDetail({agentId:item.agentId})">{{item.agentAccount}}</span>
 			        	</div>
-			        	<div class="df1 red" ng-class="{true:'red',false:'bule'}[item.cash.indexOf('-') == -1]">{{item.cash}}</div>
+			        	<div class="df1 red" ng-class="{true:'red',false:'bule'}[item.cash.indexOf('-') == -1]">{{item.cash/1000}}</div>
 			        	<div class="df1">
 			        		<button class="button button-balanced" ng-click="gotoSet($index)">设置</button>
 			        	</div>

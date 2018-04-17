@@ -31,7 +31,7 @@
 					<div class="df1 tc">二字</div>
 					<div class="df1 tc">
 						<select ng-model="user.profitTwo">
-			              <option value="{{item}}" ng-repeat="item in initData.prifitList">{{item}}</option>
+			              <option value="{{item}}" ng-repeat="item in initData.profitListTwo">{{item}}</option>
 			            </select>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 					<div class="df1 tc">三字</div>
 					<div class="df1 tc">
 						<select ng-model="user.profitThree">
-			              <option ng-repeat="item in initData.prifitList">{{item}}</option>
+			              <option ng-repeat="item in initData.profitListThree">{{item}}</option>
 			            </select>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<div class="df1 tc">前四</div>
 					<div class="df1 tc">
 						<select ng-model="user.profitFour">
-			              <option ng-repeat="item in initData.prifitList">{{item}}</option>
+			              <option ng-repeat="item in initData.profitListTFour">{{item}}</option>
 			            </select>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 					<div class="df1 tc">二字</div>
 					<div class="df1 tc">
 						<select ng-model="user.interceptTwo">
-			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			              <option ng-repeat="item in initData.interceptListTwo track by $index">{{item}}</option>
 			            </select>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="df1 tc">三字</div>
 					<div class="df1 tc">
 						<select ng-model="user.interceptThree">
-			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			              <option ng-repeat="item in initData.interceptListThree track by $index">{{item}}</option>
 			            </select>
 					</div>
 				</div>
@@ -74,13 +74,13 @@
 					<div class="df1 tc">前四</div>
 					<div class="df1 tc">
 						<select ng-model="user.interceptFour">
-			              <option ng-repeat="item in initData.interceptList">{{item}}</option>
+			              <option ng-repeat="item in initData.interceptListFour track by $index">{{item}}</option>
 			            </select>
 					</div>
 				</div>
 			</div>
 			<div class="bottom" ng-if="type != 0">
-				<div class="top">开设时间{{user.createTime}}</div>
+				<div class="top">设立时间{{user.createTime}}</div>
 			</div>
 		</ion-content>
 	</section>
