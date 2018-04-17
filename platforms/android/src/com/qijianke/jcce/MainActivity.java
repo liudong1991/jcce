@@ -25,12 +25,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -39,7 +40,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.qijianke.jcce.common.Constants;
-import com.qijianke.jcce.entity.PrintEntity;
 import com.qijianke.jcce.event.ClipEvent;
 import com.qijianke.jcce.event.ExitEvent;
 import com.qijianke.jcce.event.WebLoadOverEvent;
@@ -51,6 +51,11 @@ import org.apache.cordova.CordovaActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 public class MainActivity extends CordovaActivity {
@@ -218,31 +223,51 @@ public class MainActivity extends CordovaActivity {
 
   }
 
-  public void clipLongImg(int head) {
+  public void clipLongImg(final int head) {
     WebView mWebView = (WebView) appView.getView();
     mWebView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     mWebView.layout(0, 0, mWebView.getMeasuredWidth(), mWebView.getMeasuredHeight());
     mWebView.setDrawingCacheEnabled(true);
     mWebView.buildDrawingCache();
-    Bitmap longImg = Bitmap.createBitmap(mWebView.getMeasuredWidth(), mWebView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+    final Bitmap longImg = Bitmap.createBitmap(mWebView.getMeasuredWidth(), mWebView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
     Canvas canvas = new Canvas(longImg);
     Paint paint = new Paint();
     canvas.drawBitmap(longImg, 0, mWebView.getMeasuredHeight(), paint);
     mWebView.draw(canvas);
 
-    Log.i(getClass().getName(), "wust======>" + longImg);
+    Log.i(getClass().getName(), "wust======>" + longImg + " head==>" + head);
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        File file = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+        try {
+          longImg.compress(Bitmap.CompressFormat.JPEG, 20, new FileOutputStream(file));
+          Rect rect = new Rect(0, head, longImg.getWidth(), longImg.getHeight() - head);
+          longImg.recycle();
+          FileInputStream fis = new FileInputStream(file);
+          BitmapFactory.Options opt = new BitmapFactory.Options();
+          opt.inPreferredConfig = Bitmap.Config.RGB_565;
+          Bitmap dest = BitmapFactory.decodeStream(fis, rect, opt);
+          if (file.exists()) file.delete();
+          final boolean isSuccess = ImgUtils.saveImageToGallery(MainActivity.this, dest);
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              Toast.makeText(MainActivity.this, isSuccess ? "保存成功" : "保存失败", Toast.LENGTH_SHORT).show();
+            }
+          });
 
-    Bitmap dest = Bitmap.createBitmap(longImg, 0, head, longImg.getWidth(), longImg.getHeight() - head);
-
-    boolean isSuccess = ImgUtils.saveImageToGallery(this, dest);
-    Toast.makeText(this, isSuccess ? "保存成功" : "保存失败", Toast.LENGTH_SHORT).show();
-  }
-
-  private int y = 0;
-
-  private void testWebview() {
-    WebView mWebview = (WebView) appView.getView();
-    y = y + 250;
-    mWebview.scrollBy(0, y);
+        } catch (Exception e) {
+          e.printStackTrace();
+          if (file.exists()) file.delete();
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              Toast.makeText(MainActivity.this, "保存失败", Toast.LENGTH_SHORT).show();
+            }
+          });
+        }
+      }
+    }).start();
   }
 }
